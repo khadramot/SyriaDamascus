@@ -17,21 +17,20 @@
         }
 
         body {
-            /* ★★★ غيّر رابط الصورة هنا إلى خلفيتك التي تريدها ★★★ */
             background-image: url('https://images.unsplash.com/photo-1518655048521-f130df041f66?w=1600'); 
-            background-size: cover;          /* تجعل الصورة تغطي الشاشة كاملة */
-            background-position: center;     /* توسيط الصورة */
-            background-attachment: fixed;    /* تثبيت الخلفية عند التمرير */
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            height: 100vh;
+            min-height: 100vh;  /* تغيير من height إلى min-height */
             display: flex;
             justify-content: center;
             align-items: center;
             text-align: center;
-            direction: rtl; /* محاذاة النصوص من اليمين (للعربية) */
+            direction: rtl;
         }
 
-        /* طبقة شفافة فوق الخلفية لجعل النص مقروءاً بشكل أفضل */
+        /* طبقة شفافة فوق الخلفية */
         body::before {
             content: '';
             position: absolute;
@@ -39,20 +38,23 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.4); /* اسود شفاف بنسبة 40% */
+            background-color: rgba(0, 0, 0, 0.4);
             z-index: 0;
         }
 
-        /* الحاوية الأساسية (توضع فوق الطبقة الشفافة) */
+        /* الحاوية الأساسية */
         .container {
             position: relative;
             z-index: 1;
             max-width: 900px;
-            padding: 20px;
+            width: 90%;
+            /* ★★★ التعديل الأهم: إضافة مسافة رأسية كبيرة من الأعلى ★★★ */
+            padding: 80px 20px 40px;  /* أعلى: 80px - جانبان: 20px - أسفل: 40px */
+            /* يمكنك زيادة الرقم 80 إلى 100 أو 120 إذا احتجت مسافة أكبر */
         }
 
         /* ----------------------------------- */
-        /* 2. النص الافتتاحي (عدّله كما تريد) */
+        /* 2. النص الافتتاحي */
         /* ----------------------------------- */
         .hero-text {
             color: #ffffff;
@@ -71,21 +73,30 @@
             font-size: 1.4rem;
             opacity: 0.95;
             font-weight: 300;
+            margin-bottom: 10px; /* إضافة مسافة تحت الفقرة */
+        }
+
+        .hero-text h6 {
+            font-size: 1.2rem;
+            font-weight: 400;
+            opacity: 0.9;
+            margin-top: 10px;   /* مسافة فوق h6 */
+            margin-bottom: 0;   /* إلغاء المسافة السفلية الافتراضية */
         }
 
         /* ----------------------------------- */
-        /* 3. المستطيلات الثلاثة (البطاقات)   */
+        /* 3. المستطيلات الثلاثة */
         /* ----------------------------------- */
         .cards-wrapper {
             display: flex;
-            flex-wrap: wrap;          /* للتوافق مع الجوال */
+            flex-wrap: wrap;
             justify-content: center;
-            gap: 30px;               /* المسافة بين المستطيلات */
+            gap: 30px;
         }
 
         .card {
-            background: rgba(255, 255, 255, 0.15);  /* زجاج شفاف */
-            backdrop-filter: blur(12px);            /* تأثير الضبابية الزجاجية */
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
             border-radius: 24px;
             padding: 40px 30px;
@@ -93,27 +104,24 @@
             border: 1px solid rgba(255, 255, 255, 0.25);
             box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
-            text-decoration: none;   /* لإزالة الخط السفلي للروابط */
+            text-decoration: none;
             color: white;
             display: flex;
             flex-direction: column;
             align-items: center;
         }
 
-        /* حركة عند تمرير الماوس (تأثير جميل) */
         .card:hover {
             transform: translateY(-15px) scale(1.02);
             box-shadow: 0 25px 45px rgba(0, 0, 0, 0.5);
         }
 
-        /* أيقونة داخل المستطيل */
         .card i {
             font-size: 4.5rem;
             margin-bottom: 15px;
             filter: drop-shadow(0 8px 10px rgba(0, 0, 0, 0.3));
         }
 
-        /* اسم المنصة أسفل الأيقونة */
         .card span {
             font-size: 1.6rem;
             font-weight: 600;
@@ -121,37 +129,31 @@
             text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
         }
 
-        /* ---- الألوان الخاصة بكل منصة (لون الأيقونة والحدود الخفيفة) ---- */
-        .card-facebook i {
-            color: #1877f2;
-        }
-        .card-facebook {
-            border-bottom: 5px solid #1877f2;
-        }
+        /* ---- الألوان الخاصة بكل منصة ---- */
+        .card-facebook i { color: #1877f2; }
+        .card-facebook { border-bottom: 5px solid #1877f2; }
 
-        .card-telegram i {
-            color: #0088cc;
-        }
-        .card-telegram {
-            border-bottom: 5px solid #0088cc;
-        }
+        .card-telegram i { color: #0088cc; }
+        .card-telegram { border-bottom: 5px solid #0088cc; }
 
-        .card-whatsapp i {
-            color: #25d366;
-        }
-        .card-whatsapp {
-            border-bottom: 5px solid #25d366;
-        }
+        .card-whatsapp i { color: #25d366; }
+        .card-whatsapp { border-bottom: 5px solid #25d366; }
 
         /* ---------------------------- */
         /* 4. تنسيق الجوال (شاشات صغيرة) */
         /* ---------------------------- */
         @media (max-width: 700px) {
+            .container {
+                padding: 60px 15px 30px;  /* مسافة أعلى أقل قليلاً للجوال لكنها كافية */
+            }
             .hero-text h1 {
                 font-size: 2.5rem;
             }
             .hero-text p {
                 font-size: 1.1rem;
+            }
+            .hero-text h6 {
+                font-size: 1rem;
             }
             .card {
                 width: 180px;
@@ -171,36 +173,33 @@
     <div class="container">
 
         <!-- ======================================== -->
-        <!-- ★★★  عدّل النص الافتتاحي هنا  ★★★     -->
+        <!-- ★★★  النص الافتتاحي  ★★★              -->
         <!-- ======================================== -->
         <div class="hero-text">
-    <h1> مرحبا بكم في شركة (خضرموت) في مدينة دمشق</h1>
-    <p>نحن موجودون هنا في دمشق لتوصيل الخضار والفواكه بالاضافة الى تلبية طلبات الخضار الجاهزة</p>
-            <h6>يمكنكم التواصل معنا عبر المنصات التالية </h6>
-    <!-- إضافة مسافة رأسية 60 بكسل -->
-    <div style="height: 60px;"></div>
-</div>
+            <h1>مرحباً بكم في شركة (خضرموت) في مدينة دمشق</h1>
+            <p>نحن موجودون هنا في دمشق لتوصيل الخضار والفواكه بالإضافة إلى تلبية طلبات الخضار الجاهزة</p>
+            <h6>يمكنكم التواصل معنا عبر المنصات التالية</h6>
+            <!-- لم أعد بحاجة لـ div style=height لأن المسافة أصبحت من الأعلى عبر padding -->
+        </div>
+
         <!-- ======================================== -->
         <!-- ★★★  المستطيلات الثلاثة (عدّل الروابط)  ★★★ -->
         <!-- ======================================== -->
         <div class="cards-wrapper">
 
             <!-- 1. رابط فيسبوك -->
-            <!-- غيّر الرابط داخل href="" إلى رابط صفحة فيسبوك الخاصة بك -->
             <a href="https://www.facebook.com/yourpage" target="_blank" class="card card-facebook">
                 <i class="fab fa-facebook-f"></i>
                 <span>فيسبوك</span>
             </a>
 
             <!-- 2. رابط تلغرام -->
-            <!-- غيّر الرابط داخل href="" إلى رابط قناة أو مجموعة التلغرام -->
             <a href="https://t.me/yourchannel" target="_blank" class="card card-telegram">
                 <i class="fab fa-telegram-plane"></i>
                 <span>تلغرام</span>
             </a>
 
             <!-- 3. رابط واتساب -->
-            <!-- غيّر الرابط داخل href="" إلى رابط واتساب (يمكنك استخدام رابط الدعوة المباشر) -->
             <a href="https://wa.me/966500000000" target="_blank" class="card card-whatsapp">
                 <i class="fab fa-whatsapp"></i>
                 <span>واتساب</span>
@@ -213,4 +212,4 @@
     <!-- نهاية الحاوية -->
 
 </body>
-  </html>
+</html>
